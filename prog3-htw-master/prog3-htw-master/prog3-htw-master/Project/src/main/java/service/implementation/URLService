@@ -1,0 +1,59 @@
+package service.implementation;
+
+import java.util.List;
+
+import facades.DaoFascade;
+import model.interfaces.UrlInterface;
+
+public class URLService {
+	private final static String URL_NOT_FOUND = "Es existiert keine URL mit der Id ";
+
+	/**
+	 * Uebergibt die URL an die Datenbank zum hinzufuegen.
+	 * 
+	 * @param url URL, die hinzugefügt werden soll
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(UrlInterface url) {
+
+		if (!exists(url.getId())) {
+			DaoFascade.addUrl(url);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * Holt eine URL aus der Datenbank
+	 * 
+	 * @param id URL Id
+	 * @return URL
+	 */
+	public static UrlInterface getUrl(int id) {
+		if(exists(id)) {
+			UrlInterface url = DaoFascade.getUrl(id);
+			return url;
+		}
+		else throw new IllegalArgumentException(URL_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller URLs in der Datenbank
+	 * 
+	 * @return Liste aller URLs.
+	 */
+	public static List<UrlInterface>  getUrls() {
+		List<UrlInterface> urls = DaoFascade.getUrls();
+		return urls;
+	}
+	
+	/**
+	 * Ueberpruft,ob die URLId in der Datenbank vorhanden ist.
+	 * 
+	 * @param id URLId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsUrl(id);
+	}
+}

@@ -1,0 +1,59 @@
+package service.implementation;
+
+import java.util.List;
+
+import facades.DaoFascade;
+import model.interfaces.ThemaInterface;
+
+public class ThemaService {
+	private final static String THEMA_NOT_FOUND = "Es existiert kein Thema mit der Id ";
+
+	/**
+	 * Uebergibt das Thema an die Datenbank zum hinzufuegen.
+	 * 
+	 * @param thema Thema, das hinzugefügt werden soll
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(ThemaInterface thema) {
+
+		if (!exists(thema.getId())) {
+			DaoFascade.addThema(thema);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * Holt ein Thema aus der Datenbank
+	 * 
+	 * @param id Themen Id
+	 * @return Thema
+	 */
+	public static ThemaInterface getThema(int id) {
+		if(exists(id)) {
+			ThemaInterface thema = DaoFascade.getThema(id);
+			return thema;
+		}
+		else throw new IllegalArgumentException(THEMA_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller Themen in der Datenbank
+	 * 
+	 * @return Liste aller Themen.
+	 */
+	public static List<ThemaInterface>  getThemen() {
+		List<ThemaInterface> thema = DaoFascade.getThemen();
+		return thema;
+	}
+	
+	/**
+	 * Ueberpruft,ob die ThemenId in der Datenbank vorhanden ist.
+	 * 
+	 * @param id ThemenId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsThema(id);
+	}
+}

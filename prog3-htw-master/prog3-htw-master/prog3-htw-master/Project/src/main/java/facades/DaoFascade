@@ -1,0 +1,193 @@
+package facades;
+import java.util.List;
+
+import dao.*;
+import model.interfaces.*;
+
+/**
+ * Fassadenklasse für die Datenbankschicht
+ * @author Christian
+ *
+ */
+public class DaoFascade {
+
+	/**
+	 * Fügt einen Studenten zur Datenbank hinzu
+	 * @param student Student, der eingefügt werden soll
+	 */
+	public static void addStudent(StudentInterface student) {
+		HibernateUtil.addStudent(student);
+	}
+
+	/**
+	 * Gibt den Student mit der gegebenen MatrikelNr zurueck.
+	 * 
+	 * @param matrikelnummer
+	 * @return Student
+	 */
+	public static StudentInterface getStudent(int matrikelnummer) {
+		return HibernateUtil.getStudent(matrikelnummer);
+	}
+
+	/**
+	 * Gibt List mit allen Studenten zurueck.
+	 * 
+	 * @return liste mit allen Studenten
+	 */
+	public static List<StudentInterface> getStudents() {
+		return HibernateUtil.getStudents();
+	}
+
+	/**
+	 * 
+	 * @param matrikelnummer
+	 * @return True,ob die Matrikelnummer in der Datenbank gefunden wurde
+	 */
+	public static Boolean existsStudent(int matrikelnummer) {
+		return HibernateUtil.exists(matrikelnummer);
+	}
+
+	/**
+	 * Bestimmt, ob ein Projekt mit der id existiert
+	 * @param id Projektid
+	 * @return true, wenn es existiert
+	 */
+	public static boolean existsProjekt(int id) {
+		return HibernateUtil.existsProjektId(id);
+	}
+
+	public static int getNextModuleID(){
+		return HibernateUtil.getNextModuleID();
+	}
+
+	/**
+	 * Gibt Liste aller Projekte in der Datenbank zurück
+	 * @return
+	 */
+	public static List<ProjektInterface> getProjekts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Gibt Projekt mit der id zurück
+	 * @param id Projektid
+	 * @return Projekt mit der id
+	 */
+	public static ProjektInterface getProjekt(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Fügt Projekt zur Datenbank hinzu
+	 * @param projekt Projekt
+	 */
+	public static void addProjekt(ProjektInterface projekt) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void addModul(ModulInterface modul) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static ModulInterface getModul(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static List<ModulInterface> getModuls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean existsModul(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static void addThema(ThemaInterface thema) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static ThemaInterface getThema(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static List<ThemaInterface> getThemen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean existsThema(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static void addSprint(SprintInterface sprint) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static SprintInterface getSprint(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static List<SprintInterface> getSprints() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean existsSprint(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static void addTermin(TerminInterface termin) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static List<TerminInterface> getTermine() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static TerminInterface getTermin(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean existsTermin(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static void addUrl(UrlInterface url) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static UrlInterface getUrl(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static List<UrlInterface> getUrls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean existsUrl(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+}
+

@@ -1,0 +1,59 @@
+package service.implementation;
+
+import java.util.List;
+
+import facades.DaoFascade;
+import model.interfaces.SprintInterface;
+
+public class SprintService {
+	private final static String SPRINT_NOT_FOUND = "Es existiert kein Sprint mit der Id ";
+
+	/**
+	 * Uebergibt den Sprint an die Datenbank zum hinzufuegen.
+	 * 
+	 * @param sprint Sprint, der hinzugefügt werden soll
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(SprintInterface sprint) {
+
+		if (!exists(sprint.getId())) {
+			DaoFascade.addSprint(sprint);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * Holt einen Sprint aus der Datenbank
+	 * 
+	 * @param id Sprint Id
+	 * @return Sprint
+	 */
+	public static SprintInterface getSprint(int id) {
+		if(exists(id)) {
+			SprintInterface sprint = DaoFascade.getSprint(id);
+			return sprint;
+		}
+		else throw new IllegalArgumentException(SPRINT_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller Sprints in der Datenbank
+	 * 
+	 * @return Liste aller Sprints.
+	 */
+	public static List<SprintInterface>  getSprints() {
+		List<SprintInterface> sprint = DaoFascade.getSprints();
+		return sprint;
+	}
+	
+	/**
+	 * Ueberpruft,ob die SprintId in der Datenbank vorhanden ist.
+	 * 
+	 * @param id SprintId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsSprint(id);
+	}
+}

@@ -1,0 +1,59 @@
+package service.implementation;
+
+import java.util.List;
+
+import facades.DaoFascade;
+import model.interfaces.TerminInterface;
+
+public class TerminService {
+	private final static String TERMIN_NOT_FOUND = "Es existiert kein Termin mit der Id ";
+
+	/**
+	 * Uebergibt den Termin an die Datenbank zum hinzufuegen.
+	 * 
+	 * @param termin Termin, der hinzugefügt werden soll
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(TerminInterface termin) {
+
+		if (!exists(termin.getId())) {
+			DaoFascade.addTermin(termin);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * Holt einen Termin aus der Datenbank
+	 * 
+	 * @param id Termin Id
+	 * @return Termin
+	 */
+	public static TerminInterface getTermin(int id) {
+		if(exists(id)) {
+			TerminInterface termin = DaoFascade.getTermin(id);
+			return termin;
+		}
+		else throw new IllegalArgumentException(TERMIN_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller Termine in der Datenbank
+	 * 
+	 * @return Liste aller Termine.
+	 */
+	public static List<TerminInterface>  getTermine() {
+		List<TerminInterface> termine = DaoFascade.getTermine();
+		return termine;
+	}
+	
+	/**
+	 * Ueberpruft,ob die TerminId in der Datenbank vorhanden ist.
+	 * 
+	 * @param id TerminId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsTermin(id);
+	}
+}

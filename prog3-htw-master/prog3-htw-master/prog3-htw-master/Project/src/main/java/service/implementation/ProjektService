@@ -1,0 +1,60 @@
+package service.implementation;
+
+import java.util.List;
+
+import dao.HibernateUtil;
+import facades.DaoFascade;
+import model.interfaces.ProjektInterface;
+
+public class ProjektService {
+	private final static String PROJEKT_NOT_FOUND = "Es existiert kein Projekt mit der ProjektId ";
+
+	/**
+	 * Uebergibt das Projekt an die Datenbank zum hinzufuegen.
+	 * 
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(ProjektInterface projekt) {
+
+		if (!exists(projekt.getId())) {
+			DaoFascade.addProjekt(projekt);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * Holt Projekt aus der Datenbank
+	 * 
+	 * @param id Projekt Id
+	 * @return Projekt
+	 */
+	public static ProjektInterface getProjekt(int id) {
+		if(exists(id)) {
+			ProjektInterface student = DaoFascade.getProjekt(id);
+			return student;
+		}
+		else throw new IllegalArgumentException(PROJEKT_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller Projekte in der Datenbank
+	 * 
+	 * @return Liste aller Projekte.
+	 */
+	public static List<ProjektInterface>  getProjekts() {
+		List<ProjektInterface> projekte = DaoFascade.getProjekts();
+		return projekte;
+	}
+	
+	/**
+	 * Ueberpruft,ob die ProjektId in der Datenbank vorhanden ist.
+	 * 
+	 * @param projektId ProjektId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsProjekt(id);
+	}
+}

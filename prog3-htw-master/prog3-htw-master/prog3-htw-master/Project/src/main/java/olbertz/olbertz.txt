@@ -1,0 +1,11 @@
+Sie haben da kein schlechtes Programm abgeliefert. Es gibt einige Stellen, die ich auch im Code markiert habe, bei
+denen Sie etwas haetten aufpassen muessen, was Lesbarkeit angeht. Was auffaellt, ist das leichte Sprachchaos. Sie 
+verwenden deutsche Namen fuer die meisten Klassen, haben dann aber wieder englische Attribut- und Methodennamen.
+Achten Sie auf konsistenten Code. Dadurch machen Sie sich das Leben erheblich leichter, wie ich es in der Vorlesung
+auch erklaert habe. 
+
+Sie haben sich auf jeden Fall an einer guten Architektur versucht. Dabei haben Sie wohl versucht, sich an meiner
+Beispiel-Architektur zu orientieren. Leider haben Sie dann doch wieder an einigen Stellen einiges eingebaut, was
+als eher unguenstig zu bezeichnen ist. Ihr HibernateUtil bspw. ist viel zu gross. Das habe ich ja im Code kommentiert.
+
+Insgesamt haben Sie sich allerdings bemueht und versucht, sich an die Regeln zur Lesbarkeit des Codes zu halten.

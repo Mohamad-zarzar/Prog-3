@@ -1,0 +1,60 @@
+package service.implementation;
+
+import java.util.List;
+
+import facades.DaoFascade;
+import model.interfaces.ModulInterface;
+
+// OLBERTZ Was hat es mit diesen Dateien auf sich, die keine .java-Endung haben?
+public class ModulService {
+	private final static String MODUL_NOT_FOUND = "Es existiert kein Modul mit der Id ";
+
+	/**
+	 * Uebergibt das Modul an die Datenbank zum hinzufuegen.
+	 * 
+	 * @param modul Modul, das hinzugefügt werden soll
+	 * @return true, wenn erfolgreich eingefuegt
+	 */
+	public static boolean add(ModulInterface modul) {
+
+		if (!exists(modul.getId())) {
+			DaoFascade.addModul(modul);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * Holt ein Modul aus der Datenbank
+	 * 
+	 * @param id Modul Id
+	 * @return Modul
+	 */
+	public static ModulInterface getModul(int id) {
+		if(exists(id)) {
+			ModulInterface modul = DaoFascade.getModul(id);
+			return modul;
+		}
+		else throw new IllegalArgumentException(MODUL_NOT_FOUND + id);
+	}
+	
+	/**
+	 * Erstellt eine Liste aller Module in der Datenbank
+	 * 
+	 * @return Liste aller Module.
+	 */
+	public static List<ModulInterface>  getModuls() {
+		List<ModulInterface> module = DaoFascade.getModuls();
+		return module;
+	}
+	
+	/**
+	 * Ueberpruft,ob die ModulId in der Datenbank vorhanden ist.
+	 * 
+	 * @param id ModulId, die gesucht werden soll
+	 * @return True, wenn diese vorkommt
+	 */
+	public static boolean exists(int id) {
+		return DaoFascade.existsModul(id);
+	}
+}
